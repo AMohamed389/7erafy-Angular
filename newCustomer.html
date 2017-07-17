@@ -58,7 +58,7 @@
 <option ng-repeat="year in YearList" ng-value="{{year}}">{{year }}</option>
 </select>
 
-<select id="day" ng-value="{{day}}">
+<select id="day">
 <option> اختر اليوم  </option>
 <option ng-model="day" ng-repeat="day in DayList" ng-value="{{day}}" >{{day}}</option>
 </select>
@@ -69,6 +69,14 @@
 </select>
 </div>
 
+<div class="form-group">
+<label for="zone">المحافظة</label>
+
+<select ng-model="orderProp1" ng-options="z.city_ar_name for z in gov">
+<option value="" selected="selected">اختر</option>
+</select>
+</div>
+
 <div class="form-group" >
 <!-- <label for="city">المدينه</label>
 <select ng-model="orderProp" ng-options="c.city_ar_name for c in cities">
@@ -76,11 +84,12 @@
 
 </select> -->
 
+
+
 <label for="zone">المنطقه</label>
 
-<select ng-model="orderProp" ng-options="z.zone_ar_name for z in cities">
-<option value="0">اختر</option>
-
+<select ng-model="orderProp2" ng-options="z.zone_ar_name for z in cities | filter : orderProp1.city_name">
+<option value="" selected>اختر</option>
 </select>
 
 

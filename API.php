@@ -18,19 +18,29 @@ if($str[3]=="bindProfessions")
     $q =new Connection();
 
  $sql =
- "Select * from `7erafy`.`tech_jobs` ";
+ "Select * from `serv` ";
  mysql_query("set character_set_server='utf8'");
  mysql_query("set names 'utf8'");
   $result = $q->executeQuery($sql);
-
+$response = "";
 echo "[";
   while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-  echo '{"job_id":"' . $row[0] . '","job_name":"' . $row[1] . '"},';
+  if($response != "")
+  {
+	$response = $response.','.'{"job_id":"' . $row[0] . '","job_name":"' . $row[5] . '"}';
+  }
+  else
+  {
+	$response = '{"job_id":"' . $row[0] . '","job_name":"' . $row[5] . '"}';
+  }
+  //echo '{"job_id":"' . $row[0] . '","job_name":"' . $row[5] . '"},';
+  
 // echo json_encode($row,JSON_UNESCAPED_UNICODE );
 // print_r($row);
 // echo '{"city":"'.$row[3].'"},';
   }
-echo '{"job_id":"","job_name":""}';
+//echo '{"job_id":"","job_name":""}';
+echo $response;
 echo "]";
 
 
@@ -49,21 +59,31 @@ elseif($str[3]=="bindZone")
     $q =new Connection();
 
  $sql =
- "Select a.city_ar_name,a.city_name,a.id as `city_id` ,b.city_id,b.arabic_zone,b.id as `zone_id` from `7erafy`.`cities`
- a right join `7erafy`.`zones` b
+ "Select a.city_ar_name,a.city_name,a.id as `city_id` ,b.city_id,b.arabic_zone,b.id as `zone_id` from `cities`
+ a right join `zones` b
  on a.id = b.city_id  ";
  mysql_query("set character_set_server='utf8'");
  mysql_query("set names 'utf8'");
   $result = $q->executeQuery($sql);
 
+   $response = "";
 echo "[";
   while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-  echo '{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '","zone_ar_name":"'.$row[4].'","zone_id":"'.$row[5].'"},';
+  if($response != "")
+  {
+	$response = $response.','.'{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '","zone_ar_name":"'.$row[4].'","zone_id":"'.$row[5].'"}';
+  }
+  else
+  {
+	$response = '{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '","zone_ar_name":"'.$row[4].'","zone_id":"'.$row[5].'"}';
+  }
+  //echo '{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '","zone_ar_name":"'.$row[4].'","zone_id":"'.$row[5].'"},';
 // echo json_encode($row,JSON_UNESCAPED_UNICODE );
 // print_r($row);
 // echo '{"city":"'.$row[3].'"},';
   }
-echo '{"city_ar_name":"","city_name":"","city_id":"","zone_ar_name":"","zone_id":""}';
+  echo $response;
+//echo '{"city_ar_name":"","city_name":"","city_id":"","zone_ar_name":"","zone_id":""}';
 echo "]";
 
 
@@ -93,14 +113,25 @@ Select distinct (a.city_ar_name),a.city_name,a.id as `city_id`  from cities a ";
  mysql_query("set names 'utf8'");
   $result = $q->executeQuery($sql);
 
+ $response = "";
+  
 echo "[";
   while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-  echo '{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '"},';
+  if($response != "")
+  {
+	$response = $response.','.'{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '"}';
+  }
+  else
+  {
+	$response = '{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '"}';
+  }
+  //echo '{"city_ar_name":"' . $row[0] . '","city_name":"' . $row[1] . '","city_id":"' . $row[2] . '"},';
 // echo json_encode($row,JSON_UNESCAPED_UNICODE );
 // print_r($row);
 // echo '{"city":"'.$row[3].'"},';
   }
-echo '{"city_ar_name":"","city_name":"","city_id":""}';
+  echo $response;
+//echo '{"city_ar_name":"","city_name":"","city_id":""}';
 echo "]";
 
 

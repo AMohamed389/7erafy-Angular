@@ -1,9 +1,5 @@
 var app = angular.module("myApp", ["ngRoute"]);
 
-
-
-
-
 // Angular controller to bind data to  age dropdowns
 app.controller("ctrl_birthdate", function($scope) {
 

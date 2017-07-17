@@ -37,8 +37,11 @@ app.factory('APIservices', function($http) {
 $http.get('api.php/bindProfessions/').then(function(response){
   $scope.jobJSON = response.data;
 });
-
-
+	
+	$http.get("api.php/bindCity/")
+  .then(function(response){
+    $scope.gov = response.data;});
+	
     $http.get("api.php/bindZone/")
   .then(function(response){
     $scope.cities = response.data;
@@ -54,8 +57,8 @@ $http.get('api.php/bindProfessions/').then(function(response){
           var day = document.getElementById("day").value;
           var month = document.getElementById("month").value;
           var year =document.getElementById("year").value;
-          var city= $scope.orderProp.city_id;
-          var zone = $scope.orderProp.zone_id;
+          var city= $scope.orderProp1.city_id;
+          var zone = $scope.orderProp2.zone_id;
           var gender = $('input[name=gender]:checked', '#regForm').val();
           var birth = year+"-"+month+"-"+day;
           var job = $scope.jobsModel.job_id;
@@ -96,11 +99,16 @@ $http.get('api.php/bindProfessions/').then(function(response){
   $scope.jobJSON = response.data;
 });
 
+	$http.get("api.php/bindCity/")
+  .then(function(response){
+    $scope.gov = response.data;
+	
+	});
 
     $http.get("api.php/bindZone/")
   .then(function(response){
     $scope.cities = response.data;
-
+	
         $scope.register = function() {
             //TODO :1.add JSON response incase of already registered --maged
 
@@ -112,8 +120,8 @@ $http.get('api.php/bindProfessions/').then(function(response){
           var day = document.getElementById("day").value;
           var month = document.getElementById("month").value;
           var year =document.getElementById("year").value;
-          var city= $scope.orderProp.city_id;
-          var zone = $scope.orderProp.zone_id;
+          var city= $scope.orderProp1.city_id;
+          var zone = $scope.orderProp2.zone_id;
           var gender = $('input[name=gender]:checked', '#regForm').val();
           var birth = year+"-"+month+"-"+day;
 
