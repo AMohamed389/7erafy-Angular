@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+<!-- <script type="text/javascript">
+  // var app = angular.module('app1',[]);
+  // app.controller('ctrl1',function($scope,$http){};
+
+
+        $.ajax({url: "../webservices.php?methodName=search&serviceId=5&cityId=3&zoneId=112",
+        .then(function(response){
+$scope.techData = response.data;
+
+        )   data: {'methodName':'search','serviceId':5,'cityId':3,'zoneId':112},success: function(result){
+          console.log(result);
+       }});
+
+
+
+</script> -->
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#searchResult").hide();
+
+  });
+</script>
+
+<script type="text/javascript">
+  var app = angular.module("app",[]);
+
+
+
+  app.controller('ct1',function($http,$scope){
+
+
+    $http.get('../API.php/bindProfessions/')
+    .then(function(response){
+      $scope.jobs= response.data;
+});
+    $http.get('../API.php/bindZone/')
+    .then(function(response){
+      $scope.zones= response.data;
+
+});
+
+$scope.getData=function(){
+  var serID= $scope.selectedJob.job_id;
+  var citId = $scope.selectedZone.city_id;
+  var zonId =$scope.selectedZone.zone_id;
+  $http.get('./webservices.php?methodName=search&serviceId='+serID+'&cityId='+citId+'&zoneId='+zonId+'')
+  .then(function(response){
+    $("#searchResult").hide();
+    $("#searchResult").show();
+    if (response.data){
+$scope.techData = response.data;
+$("#notificaiton").empty("");
+$("#notificaiton").append("<h1>wohhhoooo</h1>");
+
+}
+else
+{
+  $("#searchResult").hide();
+  $("#notificaiton").empty("");
+$("#notificaiton").append("<h1>no matches found</h1>");
+}
+
+});
+
+    }
+  });
+</script>
+
+<div class="searchDiv" ng-app="app" ng-controller="ct1">
+
+
+
+<form class="" ng-submit="getData()" >
+<label for="serviceid">المهنه</label>
+<select class="" ng-model="selectedJob" ng-options="j.job_name for j in jobs" name="serviceid">
+
+</select>
+<label for="zone">المنطقه</label>
+<select class="" ng-model="selectedZone" ng-options="z.zone_ar_name for z in zones" name="zone">
+
+</select>
+
+<button type="submit" name="button">search</button>
+
+</form>
+<div class="" id="notificaiton">
+
+</div>
+<table id="searchResult" class="table table-bordered table-hover">
+  <tr>
+    <th>اسم الشهره</th>
+    <th>الموبايل</th>
+    <th>البريد الاليكتروني</th>
+    <th>المدينه</th>
+    <th>تاريخ الميلاد</th>
+    <th>المحافظه</th>
+    <th>الحرفه</th>
+  </tr>
+  <tr ng-repeat="d in techData">
+  <td >{{d.nickName}}</td>
+  <td >{{d.mobile}}</td>
+  <td >{{d.techEmail}}</td>
+  <td>{{d.cityName}}</td>
+  <td>{{d.birthDate}}</td>
+  <td >{{d.serviceId}}</td>
+  <td >{{d.zoneId}}</td>
+
+
+  </tr>
+</table>
+
+</div>
+</body>
+</html>
