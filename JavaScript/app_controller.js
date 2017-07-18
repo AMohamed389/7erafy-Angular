@@ -23,6 +23,7 @@ app.factory('APIservices', function($http) {
   return APIzoneJson;
 
 });
+
 //controllerCity
 
 
