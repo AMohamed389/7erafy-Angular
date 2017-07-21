@@ -26,13 +26,13 @@
 
 <body>
   <header>
-    <p>{{month.monthOrder}}</p>
+    
     <span>للعملاء | سجل الان للتواصل مع امهر الفنيين في العديد من المجالات </span>
   </header>
 
 
   <form id="regForm"  ng-app="myApp" ng-controller="registerController" >
-
+<p>{{month.monthOrder}}</p>
     <div class="form-group">
 
       <label for="firstName">الاسم الاول</label>
@@ -49,8 +49,10 @@
     </div>
     <div class="form-group">
       <label for="email">البريد الاليكتروني</label>
-      <input type="email" class="form-control" id="emailAddress" ng-model="email" placeholder="example:yourname@gmail.com">
+      <input ng-change="s()" type="email" class="form-control" id="emailAddress" ng-model="email" placeholder="example:yourname@gmail.com">
+    <p ng-show="label_currentCustomer">email already exists</p>
     </div>
+    <p>{{email}}</p>
     <div class="form-group">
       <label for="password">كلمة المرور</label>
       <input type="password" class="form-control" id="password" ng-model="password" placeholder="كلمة المرور المستخدمة للموقع">
@@ -111,7 +113,7 @@
 
 
 
-    <button type="submit" ng-click="registerCustomer()" class="btn btn-default">Submit</button>
+    <button ng-show="!check_submitButton" type="submit" ng-click="registerCustomer()" class="btn btn-default">Submit</button>
 
 
 

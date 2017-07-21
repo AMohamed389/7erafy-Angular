@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+
+<body ng-app="app1" ng-controller="controller1">
+    <div>
+        <form>
+            
+        
+        <!--html element  -->
+        <label for="mail">Enter your mail</label>
+        <input type="" ng-change="s()" name="mail" ng-model="email" value="">
+        <p ng-show="label_currentCustomer">email already exists</p>
+        <button ng-show="!check_submitButton" type="">submit</button>
+    </form>1
+    </div>
+
+    <script>
+        // app
+        var app = angular.module('app1', []);
+        // check mail via http request to an api.
+        app.controller("controller1", function ($scope, $http, service_validateCustomerEmail) {
+            // call factory
+              $scope.s = function () {
+                var m = $scope.email;
+                service_validateCustomerEmail.validatemail(m).then(function (response) {
+                    console.log(response.data[0].customerState);
+                    $scope.state =response.data;
+                    if ($scope.state[0].customerState == "current") {
+                        $scope.label_currentCustomer = "true";
+                        $scope.check_submitButton = "true";
+                    }
+                    else if ($scope.state[0].customerState == "new") {
+                        $scope.label_currentCustomer = "";
+                        $scope.check_submitButton = "";
+                    }
+
+                })
+            };
+
+        });
+        // 
+      app.factory("service_validateCustomerEmail", function ($http) {
+            return {
+                validatemail: function (email) {
+                     return $http.get('../webservices.php/get?methodName=validateCstEmail&cstEmail='+email)
+                        .then(function (response) {
+                            return response;
+                        })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

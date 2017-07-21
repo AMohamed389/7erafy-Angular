@@ -24,17 +24,22 @@ app.controller("registerController", function ($scope, service_validateTechEmail
 
     // check if the customer mail textbox was modified..
 
-    $scope.validateCustomerMail = function () {
+        $scope.s = function () {
+                var m = $scope.email;
+                service_validateCustomerEmail.validatemail(m).then(function (response) {
+                    console.log(response.data[0].customerState);
+                    $scope.state =response.data[0].customerState;
+                    if ($scope.state[0].customerState == "current") {
+                        $scope.label_currentCustomer = "true";
+                        $scope.check_submitButton = "true";
+                    }
+                    else if ($scope.state[0].customerState == "new") {
+                        $scope.label_currentCustomer = "";
+                        $scope.check_submitButton = "";
+                    }
 
-        $scope.customerData = service_validateCustomerEmail.validateCustomerEmail($scope.customerEmail)
-        .then(function(response){
-// check response data
-return response.data[0];
-console.log(response.data[0]);
-        });
-
-        
-    };
+                })
+            };
 
 
 
