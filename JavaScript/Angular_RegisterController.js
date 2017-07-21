@@ -24,11 +24,12 @@ app.controller("registerController", function ($scope, service_validateTechEmail
 
     // check if the customer mail textbox was modified..
 
-        $scope.s = function () {
+      $scope.mail_customer = function () {
                 var m = $scope.email;
-                service_validateCustomerEmail.validatemail(m).then(function (response) {
+                
+                service_validateCustomerEmail.validateCustomermail(m).then(function (response) {
                     console.log(response.data[0].customerState);
-                    $scope.state =response.data[0].customerState;
+                    $scope.state =response.data;
                     if ($scope.state[0].customerState == "current") {
                         $scope.label_currentCustomer = "true";
                         $scope.check_submitButton = "true";
@@ -36,6 +37,23 @@ app.controller("registerController", function ($scope, service_validateTechEmail
                     else if ($scope.state[0].customerState == "new") {
                         $scope.label_currentCustomer = "";
                         $scope.check_submitButton = "";
+                    }
+
+                })
+            };
+
+                    $scope.mail_tech = function () {
+                var m = $scope.email;
+                service_validateTechEmail.validateTechmail(m).then(function (response) {
+                    console.log(response.data[0].customerState);
+                    $scope.state =response.data;
+                    if ($scope.state[0].customerState == "current") {
+                        $scope.label_currentTech = "true";
+                        $scope.check_submitButtontech = "true";
+                    }
+                    else if ($scope.state[0].customerState == "new") {
+                        $scope.label_currentTech = "";
+                        $scope.check_submitButtontech = "";
                     }
 
                 })

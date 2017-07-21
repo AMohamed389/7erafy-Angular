@@ -49,7 +49,8 @@
     </div>
     <div class="form-group">
       <label for="email">البريد الاليكتروني</label>
-      <input type="email" class="form-control" id="emailAddress" ng-model="email" placeholder="example:yourname@gmail.com">
+      <input ng-change="mail_tech()" type="email" class="form-control" id="emailAddress" ng-model="email" placeholder="example:yourname@gmail.com">
+    <p ng-show="label_currentTech">البريد الاليكتروني مسجل بالفعل</p>
     </div>
     <div class="form-group">
       <label for="password">كلمة المرور</label>
@@ -114,7 +115,7 @@
 
 
 
-    <button type="submit" ng-click="registerTech()" class="btn btn-default">Submit</button>
+    <button ng-show="!check_submitButtontech" type="submit" ng-click="registerTech()" class="btn btn-default">Submit</button>
 
 
 
