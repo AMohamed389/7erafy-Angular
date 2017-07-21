@@ -14,9 +14,12 @@
         
         <!--html element  -->
         <label for="mail">Enter your mail</label>
-        <input type="" ng-change="s()" name="mail" ng-model="email" value="">
-        <p ng-show="label_currentCustomer">email already exists</p>
-        <button ng-show="!check_submitButton" type="">submit</button>
+        <input type="" ng-change="mail_customer()" name="mail" ng-model="customeremail" value="">
+         <input type="" ng-change="mail_tech()" name="mail" ng-model="techemail" value=""> 
+        <p ng-show="label_currentCustomer">customer already exists</p>
+         <p ng-show="label_currentTech">Tech already exists</p> 
+        <button ng-show="!check_submitButton" type="">submit customer</button>
+        <button ng-show="!check_submitButtontech" type="">submit customer</button>
     </form>1
     </div>
 
@@ -24,11 +27,11 @@
         // app
         var app = angular.module('app1', []);
         // check mail via http request to an api.
-        app.controller("controller1", function ($scope, $http, service_validateCustomerEmail) {
+        app.controller("controller1", function ($scope, $http, service_validateCustomerEmail,service_validateTechEmail) {
             // call factory
-              $scope.s = function () {
-                var m = $scope.email;
-                service_validateCustomerEmail.validatemail(m).then(function (response) {
+              $scope.mail_customer = function () {
+                var m = $scope.customeremail;
+                service_validateCustomerEmail.validateCustomermail(m).then(function (response) {
                     console.log(response.data[0].customerState);
                     $scope.state =response.data;
                     if ($scope.state[0].customerState == "current") {
@@ -42,13 +45,39 @@
 
                 })
             };
+              $scope.mail_tech = function () {
+                var m = $scope.techemail;
+                service_validateTechEmail.validateTechmail(m).then(function (response) {
+                    console.log(response.data[0].customerState);
+                    $scope.state =response.data;
+                    if ($scope.state[0].customerState == "current") {
+                        $scope.label_currentTech = "true";
+                        $scope.check_submitButtontech = "true";
+                    }
+                    else if ($scope.state[0].customerState == "new") {
+                        $scope.label_currentTech = "";
+                        $scope.check_submitButtontech = "";
+                    }
+
+                })
+            };
 
         });
         // 
       app.factory("service_validateCustomerEmail", function ($http) {
             return {
-                validatemail: function (email) {
+                validateCustomermail: function (email) {
                      return $http.get('../webservices.php/get?methodName=validateCstEmail&cstEmail='+email)
+                        .then(function (response) {
+                            return response;
+                        })
+                }
+            }
+        });
+          app.factory("service_validateTechEmail", function ($http) {
+            return {
+                validateTechmail: function (email) {
+                     return $http.get('../webservices.php/get?methodName=validateTechEmail&techEmail='+email)
                         .then(function (response) {
                             return response;
                         })
