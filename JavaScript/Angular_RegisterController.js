@@ -1,4 +1,4 @@
-app.controller("registerController", function ($scope, service_bindJob, service_bindyear, service_bindZone, service_bindCity, service_bindMonth, service_bindDay) {
+app.controller("registerController", function ($scope, service_validateTechEmail, service_validateCustomerEmail, service_bindJob, service_bindyear, service_bindZone, service_bindCity, service_bindMonth, service_bindDay) {
     // get years array
     $scope.yearList = service_bindyear.getYear();
     // 
@@ -17,8 +17,31 @@ app.controller("registerController", function ($scope, service_bindJob, service_
     service_bindJob.getJob().then(function (response) {
         $scope.JobList = response.data;
     });
+
     // 
 
+   
+
+    // check if the customer mail textbox was modified..
+
+    $scope.validateCustomerMail = function () {
+
+        $scope.customerData = service_validateCustomerEmail.validateCustomerEmail($scope.customerEmail)
+        .then(function(response){
+// check response data
+return response.data[0];
+console.log(response.data[0]);
+        });
+
+        
+    };
+
+
+
+    // 
+    $scope.validateTechMail = function () {
+        $scope.techData = service_validateTechEmail.validateTechEmail($scope.TechEmail);
+    };
     // this is to register a customer.
 
     $scope.registerCustomer = function () {

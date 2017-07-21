@@ -82,7 +82,8 @@ $http.get('api.php/bindProfessions/').then(function(response){
               ,gender:gender
               ,countryId:"1"
               ,service:job
-              ,methodName:"insertTech"}})
+              ,methodName:"insertTech"}
+            })
 
 
 

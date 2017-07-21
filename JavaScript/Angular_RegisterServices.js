@@ -82,3 +82,26 @@ app.factory('service_bindJob', function ($http) {
     }
 });
 // 
+// A Service to validate customer's email
+app.factory("service_validateCustomerEmail",function($http){
+return {
+validateCustomerEmail : function(email){
+return $http.get('./webservices.php/get?methodName=validateCstEmail&cstEmail='+email)
+.then(function(response){
+return response;
+})
+}    
+}
+});
+// 
+// A service to validate technician mail 
+app.factory("service_validateTechEmail",function($http){
+return {
+validateTechEmail : function(email){
+return $http.get('./webservices.php/get?methodName=validateTechEmail&techEmail='+email)
+.then(function(response){
+return response;
+})
+}    
+}
+});

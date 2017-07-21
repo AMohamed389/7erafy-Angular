@@ -27,7 +27,14 @@
 
 
 <button type="" ng-click="g()">log</button>
+<!-- <input type=""  ng-model="TechEmail" name="TechEmail" value=""> -->
+<form name="form1">
+  <input ng-change="validateCustomerMail()" name="customerEmail" ng-model="customerEmail" required>
+<p>{{dt[0]}}</p>
 
+</form>
+
+<button type="button" >Validate mail</button>
 
 
 </div>

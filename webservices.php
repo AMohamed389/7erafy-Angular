@@ -377,13 +377,13 @@ if($method == "GET")
             $transaction = new Transaction();
             $existEmail = DAOFactory::getCstProfileDAO()->queryByEmail($cstEmail);
 
-            if(count($existEmail) != "")
+            if(count($existEmail) == "")
             {
-                echo '[{"responseCode":"0","responseMessage":"success"}]';
+                echo '[{"customerState":"new","responseCode":"0","responseMessage":"success"}]';
             }
             else
             {
-                echo '[{"cstEmail":"'.$cstEmail.'"responseCode":"-1001","responseMessage":"Email Already Exist !"}]';
+                echo '[{"customerState":"current","cstEmail":"'.$cstEmail.'","responseCode":"-1001","responseMessage":"Email Already Exist !"}]';
             }
 
             $cstEmail = null;
@@ -402,13 +402,13 @@ if($method == "GET")
             $transaction = new Transaction();
             $existEmail = DAOFactory::getTechProfileDAO()->queryByEmail($techEmail);
 
-            if(count($existEmail) != "")
+            if(count($existEmail) == "")
             {
-                echo '[{"responseCode":"0","responseMessage":"success"}]';
+                echo '[{"customerState":"new","responseCode":"0","responseMessage":"success"}]';
             }
             else
             {
-                echo '[{"techEmail":"'.$techEmail.'"responseCode":"-1001","responseMessage":"Email Already Exist !"}]';
+                echo '[{"customerState":"current","techEmail":"'.$techEmail.'","responseCode":"-1001","responseMessage":"Email Already Exist !"}]';
             }
 
             $techEmail = null;
