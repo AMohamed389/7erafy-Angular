@@ -160,6 +160,7 @@ app.controller("registerController", function ($scope,$filter, service_validateT
     // 
 
     // search function
+    // this data will be replaced with JSON Object after API implementation 
     $scope.items = [{
     "id": 1,
     "name": "name 1",
