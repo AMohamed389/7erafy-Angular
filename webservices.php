@@ -672,7 +672,7 @@ if($method == "GET")
                                 .$mobile.'","techEmail":"'.$techEmail.'","birthDate":"'.$birthDate.'","cityName":"'
                                 .$cityName.'","zoneName":"'.$zoneName.'","cityId":"'.$cityId
                                 .'","zoneId":"'.$zoneId.'","serviceId":"'.$serviceId.'","urlImg":"'.$urlImg.
-                                '","responseCode":"0","responseMessage":"success"}]';
+                                '","responseCode":"0","responseMessage":"success"}';
                             }
                             else
                             {
@@ -682,7 +682,7 @@ if($method == "GET")
                                 .$mobile.'","techEmail":"'.$techEmail.'","birthDate":"'.$birthDate.'","cityName":"'
                                 .$cityName.'","zoneName":"'.$zoneName.'","cityId":"'.$cityId
                                 .'","zoneId":"'.$zoneId.'","serviceId":"'.$serviceId.'","urlImg":"'.$urlImg.
-                                '","responseCode":"0","responseMessage":"success"}]';
+                                '","responseCode":"0","responseMessage":"success"}';
                             }
 
                         }
@@ -822,7 +822,7 @@ if($method == "GET")
                     }
                 }
             }
-            echo $response;
+            echo $response."]";
         }
         else if($_GET["methodName"] == "getTechById")
         {

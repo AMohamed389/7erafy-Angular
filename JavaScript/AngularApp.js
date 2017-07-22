@@ -16,5 +16,8 @@ app.config(function($routeProvider) {
     .when("/findTech", {
         templateUrl : "findTech.html"
     })
+    .when("/searchTech", {
+        templateUrl : "searchResults.html"
+    })
 });
 // 

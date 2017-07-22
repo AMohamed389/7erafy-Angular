@@ -109,8 +109,8 @@ return response;
 // search service
 app.factory("service_searchForTech",function($http){
 return {
-findTechnician : function(){
-return $http.get('./webservices.php/get?methodName=search&cityId=3&zoneId=111&serviceId=1')
+findTechnician : function(cityId,zoneId,serviceId){
+return $http.get('./webservices.php/get?methodName=search&cityId='+cityId+'&zoneId='+zoneId+'&serviceId='+serviceId+'')
 .then(function(response){
 return response;
 console.log("test");
