@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -9,15 +9,16 @@
     <script src="./JavaScript/AngularApp.js"></script>
     <script src="./JavaScript/Angular_RegisterServices.js"></script>
     <script src="./JavaScript/Angular_RegisterController.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <!--  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  
-  
-     <link rel="stylesheet" href="./css/profileCard.css"> 
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="./css/profileCard.css">
+
 
     <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
@@ -28,7 +29,7 @@
     <div>
         <table>
             <tr>
-                <td ng-repeat="item in pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
+                <td style="padding:.7%;" ng-repeat="item in pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
                     <h2 style="text-align:center">حرفي {{item.id}} </h2>
 
                     <div class="profilecard">
@@ -38,13 +39,15 @@
                             <h1>{{item.name}}</h1>
                             <p class="cardtitle">المهنه : {{item.description}}</p>
                             <p>{{item.field3}}</p>
+
                             <div style="margin: 24px 0;">
                                 <a href="#"><i class="fa fa-dribbble"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                             </div>
-                            <p><button>Contact</button></p>
+                            <p> <button ng-show='!shownum' ng-click="shownum='true'">Contact </button></p>
+                            <p> <button ng-show='shownum'>{{item.MobileNumber}}</button></p>
                         </div>
                     </div>
                 </td>
@@ -56,20 +59,20 @@
 
 
 
-    
-        <ul class="pagination">
-            <li ng-class="{disabled: currentPage == 0}">
-                <a href ng-click="prevPage()">« Prev</a>
-            </li>
-            <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) " ng-class="{active: n == currentPage}" ng-click="$parent.currentPage = n;">
-                <a href ng-bind="n + 1">1</a>
-            </li>
 
-            <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
-                <a href ng-click="nextPage()">Next »</a>
-            </li>
-        </ul>
-    
+    <ul class="pagination">
+        <li ng-class="{disabled: currentPage == 0}">
+            <a href ng-click="prevPage()">« Prev</a>
+        </li>
+        <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) " ng-class="{active: n == currentPage}" ng-click="$parent.currentPage = n;">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+
+        <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+            <a href ng-click="nextPage()">Next »</a>
+        </li>
+    </ul>
+
 </body>
 
 </html>
