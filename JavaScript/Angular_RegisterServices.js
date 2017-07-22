@@ -110,7 +110,7 @@ return response;
 app.factory("service_searchForTech",function($http){
 return {
 findTechnician : function(){
-return $http.get('./webservices.php/get?methodName=search&cityId=3&zoneId=92&serviceId=3')
+return $http.get('./webservices.php/get?methodName=search&cityId=3&zoneId=111&serviceId=1')
 .then(function(response){
 return response;
 console.log("test");

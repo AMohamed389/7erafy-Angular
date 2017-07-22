@@ -169,22 +169,24 @@ app.controller("searchController", function ($scope, $http, $filter, service_sea
     service_searchForTech.findTechnician().then(function (response) {
 
         $scope.items = response.data;
-        
+
         //this to control the search pagination
         // as it drops negative page numbers
         // if the returned values -5 items.
-        if (response.data.length <= 3) {
+        if (response.data.length <= 4) {
             $scope.gap = 1;
+            $scope.itemsPerPage = response.data.length;
         }
         else {
             $scope.gap = 5;
+            response.data.length = 5;
         }
         // 
 
 
         $scope.filteredItems = [];
         $scope.groupedItems = [];
-        $scope.itemsPerPage = 5;
+
         $scope.pagedItems = [];
         $scope.currentPage = 0;
         // 
