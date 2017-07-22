@@ -26,14 +26,15 @@
 <body ng-app="myApp" ng-controller="searchController">
 
     <div>
-        <form>
+        <form id="form_searchTechnician">
             <table>
                 <tr>
                     <td>
                         <label for="city">المحافظه</label>
-                        <select id="soflow-color" class="" ng-model="selectedCity" ng-options="c.city_ar_name for c in cityList" name="city">
+                        <select id="soflow-color" class="" ng-model="selectedCity" ng-options="c.city_ar_name for c in cityList" name="city" required>
                         <option value="">اختر</option>    
                         </select>
+                    
                     </td>
 
                 </tr>
@@ -42,7 +43,7 @@
                     <td>
                         <label for="zone">المنطقه</label>
                         <select id="soflow-color" class="" ng-model="selectedZone" ng-options="z.zone_ar_name for z in zoneList | filter:selectedCity.city_ar_name"
-                            name="zone">
+                            name="zone" required>
                         <option value="">اختر</option>
                         </select>
                     </td>
@@ -50,7 +51,7 @@
                 </tr>
                 <tr>
                     <td> <label for="serviceid">المهنه</label>
-                        <select id="soflow-color" class="" ng-model="selectedJob" ng-options="j.job_name for j in JobList" name="service">
+                        <select id="soflow-color" class="" ng-model="selectedJob" ng-options="j.job_name for j in JobList" name="service" required>
                         <option value="">اختر</option>    
                         </select>
                     </td>
