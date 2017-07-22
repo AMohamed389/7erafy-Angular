@@ -105,3 +105,18 @@ return response;
 }    
 }
 });
+// 
+// search service
+app.factory("service_searchForTech",function($http){
+return {
+findTechnician : function(){
+return $http.get('./webservices.php/get?methodName=search&cityId=3&zoneId=92&serviceId=3')
+.then(function(response){
+return response;
+console.log("test");
+
+
+})
+}    
+}
+});

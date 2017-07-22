@@ -1,4 +1,4 @@
-app.controller("registerController", function ($scope,$filter, service_validateTechEmail, service_validateCustomerEmail, service_bindJob, service_bindyear, service_bindZone, service_bindCity, service_bindMonth, service_bindDay) {
+app.controller("registerController", function ($scope, service_validateTechEmail, service_validateCustomerEmail, service_bindJob, service_bindyear, service_bindZone, service_bindCity, service_bindMonth, service_bindDay) {
     // get years array
     $scope.yearList = service_bindyear.getYear();
     // 
@@ -20,44 +20,44 @@ app.controller("registerController", function ($scope,$filter, service_validateT
 
     // 
 
-   
+
 
     // check if the customer mail textbox was modified..
 
-      $scope.mail_customer = function () {
-                var m = $scope.email;
-                
-                service_validateCustomerEmail.validateCustomermail(m).then(function (response) {
-                    console.log(response.data[0].customerState);
-                    $scope.state =response.data;
-                    if ($scope.state[0].customerState == "current") {
-                        $scope.label_currentCustomer = "true";
-                        $scope.check_submitButton = "true";
-                    }
-                    else if ($scope.state[0].customerState == "new") {
-                        $scope.label_currentCustomer = "";
-                        $scope.check_submitButton = "";
-                    }
+    $scope.mail_customer = function () {
+        var m = $scope.email;
 
-                })
-            };
+        service_validateCustomerEmail.validateCustomermail(m).then(function (response) {
+            console.log(response.data[0].customerState);
+            $scope.state = response.data;
+            if ($scope.state[0].customerState == "current") {
+                $scope.label_currentCustomer = "true";
+                $scope.check_submitButton = "true";
+            }
+            else if ($scope.state[0].customerState == "new") {
+                $scope.label_currentCustomer = "";
+                $scope.check_submitButton = "";
+            }
 
-                    $scope.mail_tech = function () {
-                var m = $scope.email;
-                service_validateTechEmail.validateTechmail(m).then(function (response) {
-                    console.log(response.data[0].customerState);
-                    $scope.state =response.data;
-                    if ($scope.state[0].customerState == "current") {
-                        $scope.label_currentTech = "true";
-                        $scope.check_submitButtontech = "true";
-                    }
-                    else if ($scope.state[0].customerState == "new") {
-                        $scope.label_currentTech = "";
-                        $scope.check_submitButtontech = "";
-                    }
+        })
+    };
 
-                })
-            };
+    $scope.mail_tech = function () {
+        var m = $scope.email;
+        service_validateTechEmail.validateTechmail(m).then(function (response) {
+            console.log(response.data[0].customerState);
+            $scope.state = response.data;
+            if ($scope.state[0].customerState == "current") {
+                $scope.label_currentTech = "true";
+                $scope.check_submitButtontech = "true";
+            }
+            else if ($scope.state[0].customerState == "new") {
+                $scope.label_currentTech = "";
+                $scope.check_submitButtontech = "";
+            }
+
+        })
+    };
 
 
 
@@ -153,598 +153,170 @@ app.controller("registerController", function ($scope,$filter, service_validateT
         });
     }
 
+});
+
+// end of registeration 
+
+// 
 
 
-    // end of registeration 
+// search controller
+// this data will be replaced with JSON Object after API implementation 
 
-    // 
-
-    // search function
-    // this data will be replaced with JSON Object after API implementation 
-    $scope.items = [{
-    "id": 1,
-    "name": "Ahmed Shalaby",
-    "description": "نجار ",
-    "field3": "القاهره",
-    "field4": "field4 1",
-    "MobileNumber": "20100309451"
-  }, {
-    "id": 2,
-    "name": "name 2",
-    "description": "نجار ",
-    "field3": "القاهره2",
-    "field4": "field4 2",
-    "MobileNumber": "20100309452"
-  }, {
-    "id": 3,
-    "name": "name 3",
-    "description": "نجار ",
-    "field3": "القاهره3",
-    "field4": "field4 3",
-    "MobileNumber": "20100309453"
-  }, {
-    "id": 4,
-    "name": "name 4",
-    "description": "نجار ",
-    "field3": "القاهره4",
-    "field4": "field4 4",
-    "MobileNumber": "20100309454"
-  }, {
-    "id": 5,
-    "name": "name 5",
-    "description": "نجار ",
-    "field3": "القاهره5",
-    "field4": "field4 5",
-    "MobileNumber": "20100309455"
-  }, {
-    "id": 6,
-    "name": "name 6",
-    "description": "نجار ",
-    "field3": "القاهره6",
-    "field4": "field4 6",
-    "MobileNumber": "20100309456"
-  }, {
-    "id": 7,
-    "name": "name 7",
-    "description": "نجار ",
-    "field3": "القاهره7",
-    "field4": "field4 7",
-    "MobileNumber": "20100309457"
-  }, {
-    "id": 8,
-    "name": "name 8",
-    "description": "نجار ",
-    "field3": "القاهره8",
-    "field4": "field4 8",
-    "MobileNumber": "20100309458"
-  }, {
-    "id": 9,
-    "name": "name 9",
-    "description": "نجار ",
-    "field3": "القاهره9",
-    "field4": "field4 9",
-    "MobileNumber": "20100309459"
-  }, {
-    "id": 10,
-    "name": "name 10",
-    "description": "نجار ",
-    "field3": "القاهره10",
-    "field4": "field4 10",
-    "MobileNumber": "201003094510"
-  }, {
-    "id": 11,
-    "name": "name 11",
-    "description": "نجار ",
-    "field3": "القاهره11",
-    "field4": "field4 11",
-    "MobileNumber": "201003094511"
-  }, {
-    "id": 12,
-    "name": "name 12",
-    "description": "نجار ",
-    "field3": "القاهره12",
-    "field4": "field4 12",
-    "MobileNumber": "201003094512"
-  }, {
-    "id": 13,
-    "name": "name 13",
-    "description": "نجار ",
-    "field3": "القاهره13",
-    "field4": "field4 13",
-    "MobileNumber": "201003094513"
-  }, {
-    "id": 14,
-    "name": "name 14",
-    "description": "نجار ",
-    "field3": "القاهره14",
-    "field4": "field4 14",
-    "MobileNumber": "201003094514"
-  }, {
-    "id": 15,
-    "name": "name 15",
-    "description": "نجار ",
-    "field3": "القاهره15",
-    "field4": "field4 15",
-    "MobileNumber": "201003094515"
-  }, {
-    "id": 16,
-    "name": "name 16",
-    "description": "نجار ",
-    "field3": "القاهره16",
-    "field4": "field4 16",
-    "MobileNumber": "201003094516"
-  }, {
-    "id": 17,
-    "name": "name 17",
-    "description": "نجار ",
-    "field3": "القاهره17",
-    "field4": "field4 17",
-    "MobileNumber": "201003094517"
-  }, {
-    "id": 18,
-    "name": "name 18",
-    "description": "نجار ",
-    "field3": "القاهره18",
-    "field4": "field4 18",
-    "MobileNumber": "201003094518"
-  }, {
-    "id": 19,
-    "name": "name 19",
-    "description": "نجار ",
-    "field3": "القاهره19",
-    "field4": "field4 19",
-    "MobileNumber": "201003094519"
-  }, {
-    "id": 20,
-    "name": "name 5",
-    "description": "نجار ",
-    "field3": "القاهره5",
-    "field4": "field4 5",
-    "MobileNumber": "20100309455"
-  }, {
-    "id": 21,
-    "name": "name 6",
-    "description": "نجار ",
-    "field3": "القاهره6",
-    "field4": "field4 6",
-    "MobileNumber": "20100309456"
-  }, {
-    "id": 22,
-    "name": "name 7",
-    "description": "نجار ",
-    "field3": "القاهره7",
-    "field4": "field4 7",
-    "MobileNumber": "20100309457"
-  }, {
-    "id": 23,
-    "name": "name 8",
-    "description": "نجار ",
-    "field3": "القاهره8",
-    "field4": "field4 8",
-    "MobileNumber": "20100309458"
-  }, {
-    "id": 24,
-    "name": "name 9",
-    "description": "نجار ",
-    "field3": "القاهره9",
-    "field4": "field4 9",
-    "MobileNumber": "20100309459"
-  }, {
-    "id": 25,
-    "name": "name 10",
-    "description": "نجار ",
-    "field3": "القاهره10",
-    "field4": "field4 10",
-    "MobileNumber": "201003094510"
-  }, {
-    "id": 26,
-    "name": "name 11",
-    "description": "نجار ",
-    "field3": "القاهره11",
-    "field4": "field4 11",
-    "MobileNumber": "201003094511"
-  }, {
-    "id": 27,
-    "name": "name 12",
-    "description": "نجار ",
-    "field3": "القاهره12",
-    "field4": "field4 12",
-    "MobileNumber": "201003094512"
-  }, {
-    "id": 28,
-    "name": "name 13",
-    "description": "نجار ",
-    "field3": "القاهره13",
-    "field4": "field4 13",
-    "MobileNumber": "201003094513"
-  }, {
-    "id": 29,
-    "name": "name 14",
-    "description": "نجار ",
-    "field3": "القاهره14",
-    "field4": "field4 14",
-    "MobileNumber": "201003094514"
-  }, {
-    "id": 30,
-    "name": "name 15",
-    "description": "نجار ",
-    "field3": "القاهره15",
-    "field4": "field4 15",
-    "MobileNumber": "201003094515"
-  }, {
-    "id": 31,
-    "name": "name 16",
-    "description": "نجار ",
-    "field3": "القاهره16",
-    "field4": "field4 16",
-    "MobileNumber": "201003094516"
-  }, {
-    "id": 32,
-    "name": "name 17",
-    "description": "نجار ",
-    "field3": "القاهره17",
-    "field4": "field4 17",
-    "MobileNumber": "201003094517"
-  }, {
-    "id": 33,
-    "name": "name 18",
-    "description": "نجار ",
-    "field3": "القاهره18",
-    "field4": "field4 18",
-    "MobileNumber": "201003094518"
-  }, {
-    "id": 34,
-    "name": "name 19",
-    "description": "نجار ",
-    "field3": "القاهره19",
-    "field4": "field4 19",
-    "MobileNumber": "201003094519"
-  }, {
-    "id": 35,
-    "name": "name 5",
-    "description": "نجار ",
-    "field3": "القاهره5",
-    "field4": "field4 5",
-    "MobileNumber": "20100309455"
-  }, {
-    "id": 36,
-    "name": "name 6",
-    "description": "نجار ",
-    "field3": "القاهره6",
-    "field4": "field4 6",
-    "MobileNumber": "20100309456"
-  }, {
-    "id": 37,
-    "name": "name 7",
-    "description": "نجار ",
-    "field3": "القاهره7",
-    "field4": "field4 7",
-    "MobileNumber": "20100309457"
-  }, {
-    "id": 38,
-    "name": "name 8",
-    "description": "نجار ",
-    "field3": "القاهره8",
-    "field4": "field4 8",
-    "MobileNumber": "20100309458"
-  }, {
-    "id": 39,
-    "name": "name 9",
-    "description": "نجار ",
-    "field3": "القاهره9",
-    "field4": "field4 9",
-    "MobileNumber": "20100309459"
-  }, {
-    "id": 40,
-    "name": "name 10",
-    "description": "نجار ",
-    "field3": "القاهره10",
-    "field4": "field4 10",
-    "MobileNumber": "201003094510"
-  }, {
-    "id": 41,
-    "name": "name 11",
-    "description": "نجار ",
-    "field3": "القاهره11",
-    "field4": "field4 11",
-    "MobileNumber": "201003094511"
-  }, {
-    "id": 42,
-    "name": "name 12",
-    "description": "نجار ",
-    "field3": "القاهره12",
-    "field4": "field4 12",
-    "MobileNumber": "201003094512"
-  }, {
-    "id": 43,
-    "name": "name 13",
-    "description": "نجار ",
-    "field3": "القاهره13",
-    "field4": "field4 13",
-    "MobileNumber": "201003094513"
-  }, {
-    "id": 44,
-    "name": "name 14",
-    "description": "نجار ",
-    "field3": "القاهره14",
-    "field4": "field4 14",
-    "MobileNumber": "201003094514"
-  }, {
-    "id": 45,
-    "name": "name 15",
-    "description": "نجار ",
-    "field3": "القاهره15",
-    "field4": "field4 15",
-    "MobileNumber": "201003094515"
-  }, {
-    "id": 46,
-    "name": "name 16",
-    "description": "نجار ",
-    "field3": "القاهره16",
-    "field4": "field4 16",
-    "MobileNumber": "201003094516"
-  }, {
-    "id": 47,
-    "name": "name 17",
-    "description": "نجار ",
-    "field3": "القاهره17",
-    "field4": "field4 17",
-    "MobileNumber": "201003094517"
-  }, {
-    "id": 48,
-    "name": "name 18",
-    "description": "نجار ",
-    "field3": "القاهره18",
-    "field4": "field4 18",
-    "MobileNumber": "201003094518"
-  }, {
-    "id": 49,
-    "name": "name 19",
-    "description": "نجار ",
-    "field3": "القاهره19",
-    "field4": "field4 19",
-    "MobileNumber": "201003094519"
-  }, {
-    "id": 50,
-    "name": "name 5",
-    "description": "نجار ",
-    "field3": "القاهره5",
-    "field4": "field4 5",
-    "MobileNumber": "20100309455"
-  }, {
-    "id": 51,
-    "name": "name 6",
-    "description": "نجار ",
-    "field3": "القاهره6",
-    "field4": "field4 6",
-    "MobileNumber": "20100309456"
-  }, {
-    "id": 52,
-    "name": "name 7",
-    "description": "نجار ",
-    "field3": "القاهره7",
-    "field4": "field4 7",
-    "MobileNumber": "20100309457"
-  }, {
-    "id": 53,
-    "name": "name 8",
-    "description": "نجار ",
-    "field3": "القاهره8",
-    "field4": "field4 8",
-    "MobileNumber": "20100309458"
-  }, {
-    "id": 54,
-    "name": "name 9",
-    "description": "نجار ",
-    "field3": "القاهره9",
-    "field4": "field4 9",
-    "MobileNumber": "20100309459"
-  }, {
-    "id": 55,
-    "name": "name 10",
-    "description": "نجار ",
-    "field3": "القاهره10",
-    "field4": "field4 10",
-    "MobileNumber": "201003094510"
-  }, {
-    "id": 56,
-    "name": "name 11",
-    "description": "نجار ",
-    "field3": "القاهره11",
-    "field4": "field4 11",
-    "MobileNumber": "201003094511"
-  }, {
-    "id": 57,
-    "name": "name 12",
-    "description": "نجار ",
-    "field3": "القاهره12",
-    "field4": "field4 12",
-    "MobileNumber": "201003094512"
-  }, {
-    "id": 58,
-    "name": "name 13",
-    "description": "نجار ",
-    "field3": "القاهره13",
-    "field4": "field4 13",
-    "MobileNumber": "201003094513"
-  }, {
-    "id": 59,
-    "name": "name 14",
-    "description": "نجار ",
-    "field3": "القاهره14",
-    "field4": "field4 14",
-    "MobileNumber": "201003094514"
-  }, {
-    "id": 60,
-    "name": "name 15",
-    "description": "نجار ",
-    "field3": "القاهره15",
-    "field4": "field4 15",
-    "MobileNumber": "201003094515"
-  }, {
-    "id": 61,
-    "name": "name 16",
-    "description": "نجار ",
-    "field3": "القاهره16",
-    "field4": "field4 16",
-    "MobileNumber": "201003094516"
-  }, {
-    "id": 62,
-    "name": "name 17",
-    "description": "نجار ",
-    "field3": "القاهره17",
-    "field4": "field4 17",
-    "MobileNumber": "201003094517"
-  }, {
-    "id": 63,
-    "name": "name 18",
-    "description": "نجار ",
-    "field3": "القاهره18",
-    "field4": "field4 18",
-    "MobileNumber": "201003094518"
-  }, {
-    "id": 64,
-    "name": "name 19",
-    "description": "نجار ",
-    "field3": "القاهره19",
-    "field4": "field4 19",
-    "MobileNumber": "201003094519"
-  }, {
-    "id": 65,
-    "name": "name 20",
-    "description": "نجار ",
-    "field3": "القاهره20",
-    "field4": "field4 20",
-    "MobileNumber": "201003094520"
-  }];
+app.controller("searchController", function ($scope, $http, $filter, service_searchForTech) {
 
 
-  // init
-  $scope.sort = {
-    sortingOrder: 'id',
-    reverse: false
-  };
+    service_searchForTech.findTechnician().then(function (response) {
 
-  $scope.gap = 5;
+        $scope.items = response.data;
+        
+        //this to control the search pagination
+        // as it drops negative page numbers
+        // if the returned values -5 items.
+        if (response.data.length <= 3) {
+            $scope.gap = 1;
+        }
+        else {
+            $scope.gap = 5;
+        }
+        // 
 
-  $scope.filteredItems = [];
-  $scope.groupedItems = [];
-  $scope.itemsPerPage = 5;
-  $scope.pagedItems = [];
-  $scope.currentPage = 0;
-  var searchMatch = function(haystack, needle) {
-    if (!needle) {
-      return true;
-    }
-    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
-  };
 
-  // init the filtered items
-  $scope.search = function() {
-    $scope.filteredItems = $filter('filter')($scope.items, function(item) {
-      for (var attr in item) {
-        if (searchMatch(item[attr], $scope.query))
-          return true;
-      }
-      return false;
+        $scope.filteredItems = [];
+        $scope.groupedItems = [];
+        $scope.itemsPerPage = 5;
+        $scope.pagedItems = [];
+        $scope.currentPage = 0;
+        // 
+
+
+
+
+
+        // init
+        $scope.sort = {
+            sortingOrder: 'id',
+            reverse: false
+        };
+        // 
+
+
+
+        var searchMatch = function (haystack, needle) {
+            if (!needle) {
+                return true;
+            }
+            return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+        };
+
+        // init the filtered items
+        $scope.search = function () {
+            $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+                for (var attr in item) {
+                    if (searchMatch(item[attr], $scope.query))
+                        return true;
+                }
+                return false;
+            });
+            // take care of the sorting order
+            if ($scope.sort.sortingOrder !== '') {
+                $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sort.sortingOrder, $scope.sort.reverse);
+            }
+            $scope.currentPage = 0;
+            // now group by pages
+            $scope.groupToPages();
+        };
+
+
+        // calculate page in place
+        $scope.groupToPages = function () {
+            $scope.pagedItems = [];
+
+            for (var i = 0; i < $scope.filteredItems.length; i++) {
+                if (i % $scope.itemsPerPage === 0) {
+                    $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [$scope.filteredItems[i]];
+                } else {
+                    $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
+                }
+            }
+        };
+
+        $scope.range = function (size, start, end) {
+            var ret = [];
+            console.log(size, start, end);
+
+            if (size < end) {
+                end = size;
+                start = size - $scope.gap;
+            }
+            for (var i = start; i < end; i++) {
+                ret.push(i);
+            }
+            console.log(ret);
+            return ret;
+        };
+
+        $scope.prevPage = function () {
+            if ($scope.currentPage > 0) {
+                $scope.currentPage--;
+            }
+        };
+
+        $scope.nextPage = function () {
+            if ($scope.currentPage < $scope.pagedItems.length - 1) {
+                $scope.currentPage++;
+            }
+        };
+
+        $scope.setPage = function () {
+            $scope.currentPage = this.n;
+        };
+
+        // functions have been describe process the data for display
+        $scope.search();
+
+
+
     });
-    // take care of the sorting order
-    if ($scope.sort.sortingOrder !== '') {
-      $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sort.sortingOrder, $scope.sort.reverse);
-    }
-    $scope.currentPage = 0;
-    // now group by pages
-    $scope.groupToPages();
-  };
 
 
-  // calculate page in place
-  $scope.groupToPages = function() {
-    $scope.pagedItems = [];
+    app.$inject = ['$scope', '$filter'];
 
-    for (var i = 0; i < $scope.filteredItems.length; i++) {
-      if (i % $scope.itemsPerPage === 0) {
-        $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [$scope.filteredItems[i]];
-      } else {
-        $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
-      }
-    }
-  };
+    app.directive("customSort", function () {
+        return {
+            restrict: 'A',
+            transclude: true,
+            scope: {
+                order: '=',
+                sort: '='
+            },
+            template: ' <a ng-click="sort_by(order)" style="color: #555555;">' +
+            '    <span ng-transclude></span>' +
+            '    <i ng-class="selectedCls(order)"></i>' +
+            '</a>',
+            link: function (scope) {
 
-  $scope.range = function(size, start, end) {
-    var ret = [];
-    console.log(size, start, end);
+                // change sorting order
+                scope.sort_by = function (newSortingOrder) {
+                    var sort = scope.sort;
 
-    if (size < end) {
-      end = size;
-      start = size - $scope.gap;
-    }
-    for (var i = start; i < end; i++) {
-      ret.push(i);
-    }
-    console.log(ret);
-    return ret;
-  };
+                    if (sort.sortingOrder == newSortingOrder) {
+                        sort.reverse = !sort.reverse;
+                    }
 
-  $scope.prevPage = function() {
-    if ($scope.currentPage > 0) {
-      $scope.currentPage--;
-    }
-  };
-
-  $scope.nextPage = function() {
-    if ($scope.currentPage < $scope.pagedItems.length - 1) {
-      $scope.currentPage++;
-    }
-  };
-
-  $scope.setPage = function() {
-    $scope.currentPage = this.n;
-  };
-
-  // functions have been describe process the data for display
-  $scope.search();
+                    sort.sortingOrder = newSortingOrder;
+                };
 
 
-
+                scope.selectedCls = function (column) {
+                    if (column == scope.sort.sortingOrder) {
+                        return ('icon-chevron-' + ((scope.sort.reverse) ? 'down' : 'up'));
+                    } else {
+                        return 'icon-sort'
+                    }
+                };
+            } // end link
+        }
+    });
 });
 
-
-app.$inject = ['$scope', '$filter'];
-
-app.directive("customSort", function() {
-  return {
-    restrict: 'A',
-    transclude: true,
-    scope: {
-      order: '=',
-      sort: '='
-    },
-    template: ' <a ng-click="sort_by(order)" style="color: #555555;">' +
-      '    <span ng-transclude></span>' +
-      '    <i ng-class="selectedCls(order)"></i>' +
-      '</a>',
-    link: function(scope) {
-
-        // change sorting order
-        scope.sort_by = function(newSortingOrder) {
-          var sort = scope.sort;
-
-          if (sort.sortingOrder == newSortingOrder) {
-            sort.reverse = !sort.reverse;
-          }
-
-          sort.sortingOrder = newSortingOrder;
-        };
-
-
-        scope.selectedCls = function(column) {
-          if (column == scope.sort.sortingOrder) {
-            return ('icon-chevron-' + ((scope.sort.reverse) ? 'down' : 'up'));
-          } else {
-            return 'icon-sort'
-          }
-        };
-      } // end link
-  }
-});

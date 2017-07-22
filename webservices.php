@@ -682,7 +682,7 @@ if($method == "GET")
                                 .$mobile.'","techEmail":"'.$techEmail.'","birthDate":"'.$birthDate.'","cityName":"'
                                 .$cityName.'","zoneName":"'.$zoneName.'","cityId":"'.$cityId
                                 .'","zoneId":"'.$zoneId.'","serviceId":"'.$serviceId.'","urlImg":"'.$urlImg.
-                                '","responseCode":"0","responseMessage":"success"}';
+                                '","responseCode":"0","responseMessage":"success"}]';
                             }
 
                         }
