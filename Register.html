@@ -36,6 +36,7 @@
 	<script src="./JavaScript/Angular_RegisterServices.js"></script>
 	<script src="./JavaScript/Angular_RegisterController.js"></script>
 	<script src="./JavaScript/Angular_SearchController.js"></script>
+	<script src="./JavaScript/Angular_DOM_Controller.js" charset="utf-8"></script>
 	<link rel="stylesheet" href="./css/profileCard.css">
 	<!--  -->
 	<noscript>
@@ -59,17 +60,15 @@
 				</div>
 
 				<!-- Nav -->
-				<nav id="nav">
+				<nav id="nav" ng-controller="DOM_listItem">
 					<ul>
-						<li><a href="index.html">الرئيسيه</a></li>
-						<li class="active"><a href="Register.html"> التسجيل</a></li>
-						<li ><a href="searchResults.html"> اطلب حرفي</a></li>
 
-						<!-- <li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li> -->
+						<li ng-click="addClass='active'" ng-mouseleave="addClass=''" ng-mouseover="addClass='active'" class="{{addClass}}" ng-repeat="li in pagesURL"><a ng-href="{{li.url}}">{{li.label}}</a></li>
+
+
 					</ul>
 				</nav>
-
+			
 			</div>
 		</div>
 		<!-- Header -->
