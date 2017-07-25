@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+
+    <div class="container" ng-app="myApp" ng-controller="ahmedController">
+        <label for="c">المحافظه</label>
+        <select name="c" ng-model="selectedCity" ng-options="c.city_ar_name for c in citydata ">
+    <option value="">اختر المحافظه</option>
+</select><br>
+
+
+
+        <label for="z">المنطقه</label>
+        <select name="z" ng-model="selectedZone" ng-options="z.zone_ar_name for z in datax | filter:selectedCity.city_ar_name">
+           <option value="">اختر المنطقه</option>
+       </select><br> show city and zone <input ng-model="showData" type="checkbox"><br>
+        <label ng-show="showData" for="search">search </label>
+        <input type="" ng-show="showData" name="search" ng-model="searchKey" value="">
+
+        <table ng-show="showData" class="table table-bordered">
+            <tr class="danger">
+
+                <th>المنطقه</th>
+                <th>المدينه</th>
+                <th>التسلسل</th>
+
+            </tr>
+            <tr ng-repeat="row in datax | filter:searchKey | filter:selectedCity.city_ar_name | filter:selectedZone.zone_ar_name">
+
+                <td>{{row.zone_ar_name}} </td>
+                <td>{{row.city_ar_name}}</td>
+                <td>{{row.zone_id}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("ahmedController", function ($scope, $http) {
+            $http.get("http://localhost/7erafy/api.php/bindZone/").then(function (response) {
+                $scope.datax = response.data;
+
+            })
+            // 
+            $http.get("http://localhost/7erafy/api.php/bindCity/").then(function (response) {
+                $scope.citydata = response.data;
+
+            })
+        });
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
